@@ -1,0 +1,45 @@
+ 
+
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;  
+    margin-bottom: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%; 
+}
+
+@media (max-width:768px)
+{
+    
+.fb-profile-text>h1{
+    font-weight: 700;
+    font-size:16px;
+}
+
+.fb-image-profile
+{
+    margin: -45px 10px 0px 25px;
+    z-index: 9;
+    width: 20%; 
+}
+}
+
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+@charset "UTF-8";
+[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],
+.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate)
+{display:none !important;}ng\:form{display:block;}
+
+
+ 

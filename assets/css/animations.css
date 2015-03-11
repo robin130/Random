@@ -1,5 +1,6 @@
 .view-container {
   position: relative;
+  margin-top: 50px;
 }
 
 .view-frame.ng-enter, .view-frame.ng-leave {
@@ -338,8 +339,8 @@
   transform: translateX(60px);
   -ms-transform: translateX(60px);
   -webkit-transform: translateX(60px);
-  transition-duration: 250ms;
-  -webkit-transition-duration: 250ms;
+  transition-duration: 1s;
+  -webkit-transition-duration: 1s;
   opacity: 0;
 }
 /* line 171, ../sass/ng-animation.scss */
