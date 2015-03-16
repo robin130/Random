@@ -1,9 +1,13 @@
 define(["application-configuration"],function(app) {  
      
    
-    function loginCtrl($rootScope, $scope, $location, $localStorage, User){
-        $scope.classname = 'slide-right';        
-        console.log($scope);
+    function loginCtrl($rootScope, $scope, $location, $localStorage, api){
+        $rootScope.pageClass = 'slide-right';
+        
+        $scope.initializeController = function(){   
+            
+            console.log($scope);
+        };       
         $scope.signin = function() { 
            var formData = {
                email: $scope.email,
@@ -11,7 +15,7 @@ define(["application-configuration"],function(app) {
            }
         console.log(formData);
         
-           User.signin(formData, function(res) {
+           api.signin(formData, function(res) {
                if (res.error) {
                    $scope.error = res.error;                     
                } else {                   
@@ -25,7 +29,7 @@ define(["application-configuration"],function(app) {
            })
         }; 
         $scope.me = function() {
-            User.me(function(res) {
+            api.me(function(res) {
                 $scope.myDetails = res;
             }, function() {
                 $rootScope.error = 'Failed to fetch details';
@@ -33,7 +37,7 @@ define(["application-configuration"],function(app) {
         };
  
         $scope.logout = function() {
-            User.logout(function() {
+            api.logout(function() {
                 window.location = "/"
             }, function() {
                 alert("Failed to logout!");
@@ -43,6 +47,6 @@ define(["application-configuration"],function(app) {
        
     }
   
-    app.register.controller("loginController", ['$rootScope', '$scope', '$location', '$localStorage', 'User',loginCtrl]);
+    app.register.controller("loginController", ['$rootScope', '$scope', '$location', '$localStorage', 'api',loginCtrl]);
     
 });

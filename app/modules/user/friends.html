@@ -1,0 +1,19 @@
+<div ng-controller="profileController" class="col-md-12">      
+   <!-- user photo and other menu section on the left side -->
+   <div class="col-md-2 hidden-xs col-sm-3" ng-include="'app/modules/home/leftmenu.html'">       
+   </div>     
+    <!-- user feeds section in the middle -->
+    <div class="col-md-8 col-xs-12 col-sm-9">
+        <div class="col-md-9 col-sm-12 col-xs-12">
+            <div  ng-include="'app/modules/user/userinfo.html'"></div>
+            <!-- friends part goes here -->
+            <div ng-include="'app/modules/user/friendslist.html'"></div>
+        </div>                   
+        <div class="col-md-3 hidden-sm col-xs-12" ng-include="'app/modules/home/addsnevents.html'"></div>
+    </div>    
+    <!-- chat section on the right -->
+    <div class="col-md-2 hidden-xs hidden-sm well" id='sidebar' ng-include="'app/modules/chat/chat.html'">
+       
+    </div>
+</div>
+ 

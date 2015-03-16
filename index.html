@@ -19,7 +19,7 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+    <link rel="stylesheet" href="assets/css/material-fullpalette.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -38,13 +38,21 @@
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
+  <div class="wrapper">
+  <div class='box'>
+  <div ng-controller="headerController"  class="navbardiv">
+      <div ng-include="'app/modules/header/template.html'"></div>
+  </div>
  
   
 <div class="view-container">
-  <div ng-view class="{{classname}} view-frame"></div>
+  <div ng-view class="{{pageClass}} view-frame"></div>
 </div>
+      
+  </div>
+     
 
-   
+  </div>
   
   <script data-main="app/main" src="js/lib/require.js"></script>
   

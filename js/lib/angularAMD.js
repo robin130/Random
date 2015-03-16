@@ -122,7 +122,7 @@ define(function () {
     AngularAMD.prototype.route = function (config) {
         // Initialization not necessary to call this method.
         var load_controller;
-
+ 
         /*
         If `controllerUrl` is provided, load the provided Url using requirejs.  If `controller` is not provided
         but `controllerUrl` is, assume that module to be loaded will return a function to act as controller.
@@ -148,7 +148,7 @@ define(function () {
         }
         
         // If controller needs to be loaded, append to the resolve property
-        if (load_controller) {
+        if (load_controller) {  
             var resolve = config.resolve || {};
             resolve['__AAMDCtrl'] = ['$q', '$rootScope', function ($q, $rootScope) { // jshint ignore:line
                 var defer = $q.defer();

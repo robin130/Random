@@ -2,12 +2,16 @@ define(["application-configuration"],function(app) {
      
     
     function signupCtrl($rootScope,$scope) {
-        /* Chat controller */           
-        $scope.username = 'robin'; 
-        $scope.classname = 'slide-right';
-        console.log($scope);
+        /* Chat controller */     
+         $scope.username = 'robin'; 
+            $rootScope.pageClass = 'slide-right';
+            
+        $scope.initializeController = function(){
+           
+        }
+        
         
     }  
-    app.register.controller("signupController", ['$rootScope', '$scope', '$location', '$localStorage', 'User',signupCtrl]);
+    app.register.controller("signupController", ['$rootScope', '$scope', '$location', '$localStorage', 'api',signupCtrl]);
     
 });

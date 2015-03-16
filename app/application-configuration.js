@@ -10,10 +10,12 @@ define([
             .config(['$routeProvider', '$httpProvider', function ($routeProvider,$httpProvider) {
                     $routeProvider                  
 
-                    .when("/:section/:tree", angularAMD.route({
+                     
+                    .when("/:section/:tree?/:id?", angularAMD.route({
 
                         templateUrl: function (rp) { 
-                                     return 'app/modules/' + rp.section + '/' + rp.tree + '.html'; },
+                                     return 'app/modules/' + rp.section + '/' + (rp.tree?rp.tree : rp.section) + '.html'; },
+
                         resolve: {
                         load: ['$q', '$rootScope', '$location', 
                             function ($q, $rootScope, $location) {
@@ -23,44 +25,19 @@ define([
                                  var parentPath = parsePath[1];
                                  var controllerName = parsePath[2];
                                  var loadController = "app/modules/" + parentPath + "/"+
-                                                       controllerName + "Controller";
+                                                       (controllerName ?controllerName : parentPath) + "Controller";
 
                                  var deferred = $q.defer();
                                  require([loadController], function (ctrl) {
-                                        $rootScope.$apply(function () {
-                                            deferred.resolve();
-                                        });
+                                     deferred.resolve(ctrl);   
+                                     $rootScope.$apply();
                                  });
                             return deferred.promise;
                             }]
                         }
                     }))
 
-                    .when("/:section/:tree/:id", angularAMD.route({
-
-                        templateUrl: function (rp) { 
-                                     return 'views/' + rp.section + '/' + rp.tree + '.html'; },                        
-                        resolve: {
-                        load: ['$q', '$rootScope', '$location', 
-                            function ($q, $rootScope, $location) {
-                                var path = $location.path();
-                                var parsePath = path.split("/");
-                                var parentPath = parsePath[1];
-                                var controllerName = parsePath[2];
-                                var loadController = "Views/" + parentPath + "/" + 
-                                                      controllerName + "Controller";
-
-                                var deferred = $q.defer();
-                                require([loadController], function () {
-                                    $rootScope.$apply(function () {
-                                        deferred.resolve();
-                                        });
-                            });
-                            return deferred.promise;
-                            }]
-                            }
-                        }))
-                        .otherwise({ redirectTo: '/login/signup' }); 
+                    .otherwise({ redirectTo: '/home' }); 
                         
                      $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
                         return {
@@ -91,16 +68,15 @@ define([
                     }else{
                         if($localStorage.token || $rootScope.usertoken){
                             if(!$rootScope.usertoken)
-                                $rootScope.usertoken = $localStorage.token;
-                                $location.path('/user/profile');
-                            console.log('user token available');
+                                $rootScope.usertoken = $localStorage.token;                              
                         }
                     }
                 });
-            }).controller('headerController',['$rootScope', '$scope', 'User','$location', '$localStorage',headerController]);
+                 
+            }).controller('headerController',['$rootScope', '$scope', 'api','$location', '$localStorage',headerController]);
             
             
-    app.factory('User', ['$http', '$localStorage', function ($http, $localStorage) {
+    app.factory('api', ['$http', '$localStorage', function ($http, $localStorage) {
             var baseUrl = "http://localhost:3010/api";
             function changeUser(user) {
                 angular.extend(currentUser, user);
@@ -133,9 +109,15 @@ define([
                 return user;
             }
 
-            var currentUser = getUserFromToken();
+            var currentUser = getUserFromToken(); 
 
             return {
+                get: function (options, success, error) {
+                    $http.get(baseUrl + options.url, options.data).success(success).error(error);
+                },
+                post: function (options, success, error) {  
+                    $http.post(baseUrl + options.url, options.data).success(success).error(error);
+                },
                 save: function (data, success, error) {
                     $http.get(baseUrl + '/user', data).success(success).error(error)
                 },
@@ -145,6 +127,9 @@ define([
                 me: function (success, error) {
                     $http.get(baseUrl + '/me').success(success).error(error)
                 },
+                current_user : function(){ console.log('im here');
+                    return getUserFromToken();
+                },
                 logout: function (success) {
                     changeUser({});
                     delete $localStorage.token;
@@ -153,7 +138,7 @@ define([
             };
         }
     ]); 
-    
+      
     
     // Bootstrap Angular when DOM is ready
     angularAMD.bootstrap(app);
