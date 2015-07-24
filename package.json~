@@ -1,0 +1,13 @@
+{
+  "name": "Omniscient",
+  "private": true,
+  "version": "0.0.0",
+  "author" : "Robin A Thomas",
+  "description": "Artificial Intelligence",
+  "repository": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "devDependencies": {    
+  },
+  "scripts": {    
+  }
+}

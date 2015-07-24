@@ -1,0 +1,64 @@
+<div ng-controller="signupController" class="signup-form">   
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-7 well">
+            <span class="alert col-xs-12 col-md-12 alert-danger" ng-show="error">{{error}}</span>
+            <form role="form" name="myForm" novalidate ng-submit="signup()">
+                <h2>Please Sign Up <small>It's free and always will be.</small></h2>
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input type="text" ng-model="user.firstname" required name="firstname"  class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        </div>
+                    </div>                   
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input type="text" ng-model="user.middlename" name="middlename"  class="form-control input-lg" placeholder="Middle Name" tabindex="2">
+                        </div>
+                    </div>
+                     <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input type="text" ng-model="user.lastname" name="lastname" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="name"  required readonly value="{{fullName()}}" class="form-control input-lg" placeholder="Display Name" tabindex="3">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" ng-model="user.email" required  class="form-control input-lg" placeholder="Email Address" tabindex="4">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span ng-show="myForm.password.$error.minlength || myForm.password.$error.pattern || myForm.password.$error.maxlength" class="col-md-12 alert alert-danger">Must contain minimum 4 and maximum 15 characters with one lower & uppercase letter, and one non-alpha character (a number or a symbol.)!</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span ng-show="myForm.password.$error.equals || myForm.confirm_password.$error.equals" class="col-md-12 alert alert-danger">Passwords do not matches!</span>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="password" ng-model="user.password" ng-minlength="4" ng-maxlength="15" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required name="password" class="form-control input-lg" placeholder="Password" tabindex="5" equals="{{confirm_password}}">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="password"  ng-model="confirm_password" required name="confirm_password"  class="form-control input-lg" placeholder="Confirm Password" tabindex="6" equals="{{user.password}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                   
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+                    </div>
+                </div>
+
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6"><a href="#/login/signin" class="btn btn-info btn-block btn-lg">Sign In</a></div>
+                    <div class="col-xs-12 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg">Sign Up</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

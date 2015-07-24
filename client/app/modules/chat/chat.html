@@ -1,0 +1,88 @@
+<div ng-controller="chatController" class="row"> 
+
+    <div class="chatwindow-wrapper col-md-6">
+
+
+        <span class="alert col-xs-12 col-md-12 alert-danger" ng-show="error">{{error}}</span>
+
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="top-bar" style="padding: 5px;float: left;">
+                    <div class="col-md-12 col-xs-8">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Miguel</h3>
+                    </div>
+                     
+                </div>
+                <div class="panel-body msg_container_base" ng-style="chatStyle()" chatresize scroll-glue>
+                    
+                    
+                    <div ng-repeat="chat in chats" class="row msg_container {{ chat.from == 'self' ? 'base_sent' : 'base_recieve' }}">
+                         <div ng-show="chat.from=='random'" class="col-md-2 col-xs-2 avatar">
+                            <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                        </div>
+                        <div class="col-md-10 col-xs-10">
+                            <div class="messages msg_sent">
+                                <p>{{chat.message}}</p>                                
+                            </div>
+                        </div>
+                        <div ng-show="chat.from=='self'" class="col-md-2 col-xs-2 avatar">
+                            <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                        </div>
+                    </div>
+                    
+                     
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" ng-keyup="keyPress($event)" type="text" ng-model="textBoxContent" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-sm" ng-click="sendChat()">Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-3 chatwindow-wrapper hidden-xs hidden-sm" ng-show="chatmode=='video'">
+        <div class="video">
+            <div class="panel panel-default">          
+                <div class="panel-heading">
+                    <h3 class="panel-title">Random Feed</h3>
+                </div>            
+                <div class="panel-body" style="padding:0;">
+                    <div class="local-video-wrap">    
+                        <div class="local-video">    
+                        </div>
+                        <button id="start-local-video" class="btn btn-primary" ng-click="startLocalVideo()" >Start video</button>  
+                    </div>           
+                    <div class="remote-video-wrap">       
+                        <div class="remote-video">    
+                        </div>   
+                    </div>                   
+                </div>
+            </div>
+        </div>
+        <div class="video">
+            <div class="panel panel-default">          
+                <div class="panel-heading">
+                    <h3 class="panel-title">Your Feed</h3>
+                </div>            
+                <div class="panel-body" style="padding:0;">
+                    <div class="local-video-wrap">    
+                        <div class="local-video">    
+                        </div>
+                        <button id="start-local-video" class="btn btn-primary" ng-click="startLocalVideo()">Start video</button>  
+                    </div>           
+                    <div class="remote-video-wrap">       
+                        <div class="remote-video">    
+                        </div>   
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>              
+
+
+</div>

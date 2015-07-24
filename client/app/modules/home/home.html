@@ -1,0 +1,31 @@
+<div ng-controller="homeController" class="col-md-12"> 
+    <div class="col-md-3 hidden-xs hidden-sm"></div>
+    <div class="chat-wrapper col-md-6 well">
+
+
+        <span class="alert col-xs-12 col-md-12 alert-danger" ng-show="error">{{error}}</span>
+        <div class="col-md-2"></div>
+        <div class="col-xs-12 col-md-8">                
+            <form id="loginForm"  novalidate="novalidate" ng-submit="signin()">                                
+                <div class="form-group">
+                    
+                    <tags-input ng-model="tags" placeholder="Add interest tags" add-on-space="true"></tags-input>                    
+                </div>   
+                
+                 <div class="form-group">      
+                     <checkbox ng-model="video" ng-true-value="video"  ng-change="videochat()"></checkbox> Video                                          
+                </div> 
+                
+                <p><button class="btn btn-info btn-block" ng-click="findRandom()">Find a random match!</button></p>
+            </form>
+        </div>           
+        <div class="col-md-2"></div>
+         
+ 
+
+
+
+    </div>
+    <div class="col-md-3 hidden-xs hidden-sm"></div>
+</div>
+

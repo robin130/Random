@@ -1,0 +1,13 @@
+{
+  "name": "Random_Chat",
+  "private": true,
+  "version": "0.0.0",
+  "author" : "Robin A Thomas",
+  "description": "Random Chat",
+  "repository": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "devDependencies": {    
+  },
+  "scripts": {    
+  }
+}
